@@ -1,4 +1,4 @@
-package com.kdt.progmrs.kdt;
+package com.kdt.progmrs.kdt.voucher;
 
 import java.util.UUID;
 
@@ -12,7 +12,7 @@ public class FixedAmountVoucher implements Voucher {
     }
 
     @Override
-    public UUID getVoucherID() {
+    public UUID getVoucherId() {
         return voucherId;
     }
 

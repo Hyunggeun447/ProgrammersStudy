@@ -1,4 +1,4 @@
-package com.kdt.progmrs.kdt;
+package com.kdt.progmrs.kdt.order;
 
 import java.util.UUID;
 

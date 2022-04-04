@@ -1,10 +1,10 @@
-package com.kdt.progmrs.kdt;
+package com.kdt.progmrs.kdt.voucher;
 
 import java.util.UUID;
 
 public interface Voucher {
 
-    UUID getVoucherID();
+    UUID getVoucherId();
 
     long discount(long beforeDiscount);
 }
