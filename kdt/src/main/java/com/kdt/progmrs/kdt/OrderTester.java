@@ -44,5 +44,7 @@ public class OrderTester {
                 MessageFormat.format("totalAMount {0} is not 90L", order.totalAmount()));
 
 
+        applicationContext.close();
+
     }
 }
