@@ -1,10 +1,6 @@
 package com.kdt.progmrs.kdt.voucher;
 
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
 import java.util.Map;
@@ -13,9 +9,8 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
-@Qualifier("memory")
-@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
-public class MemoryVoucherRepository implements VoucherRepository {
+@Qualifier("jdbc")
+public class MemoryVoucherRepository2 implements VoucherRepository {
 
     private final Map<UUID, Voucher> storage = new ConcurrentHashMap<>();
 
