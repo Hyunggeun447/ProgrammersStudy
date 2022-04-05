@@ -6,6 +6,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -13,6 +14,7 @@ import java.util.UUID;
 @Configuration
 //@ComponentScan(basePackages = {"com.kdt.progmrs.kdt.order","com.kdt.progmrs.kdt.voucher"})
 @ComponentScan(basePackageClasses = {Order.class, Voucher.class})
+@PropertySource("application.properties")
 public class AppConfiguration {
 
     @Bean(initMethod = "init")

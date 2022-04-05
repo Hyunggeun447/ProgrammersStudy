@@ -5,12 +5,16 @@ import com.kdt.progmrs.kdt.order.OrderItem;
 import com.kdt.progmrs.kdt.order.OrderService;
 import com.kdt.progmrs.kdt.voucher.FixedAmountVoucher;
 import com.kdt.progmrs.kdt.voucher.VoucherRepository;
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.BeanFactoryAnnotationUtils;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.util.Assert;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -19,8 +23,22 @@ public class OrderTester {
 
         var applicationContext = new AnnotationConfigApplicationContext(AppConfiguration.class);
 
-        var customerId = UUID.randomUUID();
 
+        /**
+         * Environment 활용하기
+         * AppConfig에 @PropertySource("application.properties") 등록 후 끌어옮
+         */
+        ConfigurableEnvironment environment = applicationContext.getEnvironment();
+        String version = environment.getProperty("version");
+        System.out.println("version = " + version);
+        Integer property = environment.getProperty("mininum-order-count", Integer.class);
+        System.out.println("property = " + property);
+        List orderlistlist = environment.getProperty("orderlistlist", List.class);
+        System.out.println("orderlistlist = " + orderlistlist);
+
+
+        var customerId = UUID.randomUUID();
+        
 //        var voucherRepository = applicationContext.getBean(VoucherRepository.class);
 
         var voucherRepository = BeanFactoryAnnotationUtils.qualifiedBeanOfType(applicationContext.getBeanFactory(), VoucherRepository.class, "memory");
