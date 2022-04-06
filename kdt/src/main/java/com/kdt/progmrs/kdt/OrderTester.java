@@ -51,10 +51,10 @@ public class OrderTester {
         List<String> strings = Files.readAllLines(file.toPath());
         logger.info("strings = " + strings.stream().reduce("", (a, b) -> a + "\n" + b));
 
-        Resource resource2 = applicationContext.getResource("https://stackoverflow.com/");
-        ReadableByteChannel readableByteChannel = Channels.newChannel(resource2.getURL().openStream());
-        String collect = new BufferedReader(Channels.newReader(readableByteChannel, StandardCharsets.UTF_8)).lines().collect(Collectors.joining("\n"));
-        logger.info("collect = " + collect);
+//        Resource resource2 = applicationContext.getResource("https://stackoverflow.com/");
+//        ReadableByteChannel readableByteChannel = Channels.newChannel(resource2.getURL().openStream());
+//        String collect = new BufferedReader(Channels.newReader(readableByteChannel, StandardCharsets.UTF_8)).lines().collect(Collectors.joining("\n"));
+//        logger.info("collect = " + collect);
 
         /**
          * Environment 활용하기
