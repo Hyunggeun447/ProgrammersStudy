@@ -7,6 +7,8 @@ import com.kdt.progmrs.kdt.order.OrderProperties;
 import com.kdt.progmrs.kdt.order.OrderService;
 import com.kdt.progmrs.kdt.voucher.FixedAmountVoucher;
 import com.kdt.progmrs.kdt.voucher.VoucherRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
@@ -29,6 +31,8 @@ import java.util.stream.Stream;
 
 @SpringBootApplication
 public class OrderTester {
+
+    private static final Logger logger = LoggerFactory.getLogger(OrderTester.class);
     public static void main(String[] args) throws IOException {
 
         var applicationContext = new AnnotationConfigApplicationContext(AppConfiguration.class);
@@ -45,12 +49,12 @@ public class OrderTester {
         System.out.println("resource = " + resource.getClass().getCanonicalName());
         File file = resource.getFile();
         List<String> strings = Files.readAllLines(file.toPath());
-        System.out.println("strings = " + strings.stream().reduce("", (a, b) -> a + "\n" + b));
+        logger.info("strings = " + strings.stream().reduce("", (a, b) -> a + "\n" + b));
 
         Resource resource2 = applicationContext.getResource("https://stackoverflow.com/");
         ReadableByteChannel readableByteChannel = Channels.newChannel(resource2.getURL().openStream());
         String collect = new BufferedReader(Channels.newReader(readableByteChannel, StandardCharsets.UTF_8)).lines().collect(Collectors.joining("\n"));
-        System.out.println("collect = " + collect);
+        logger.info("collect = " + collect);
 
         /**
          * Environment 활용하기
@@ -59,36 +63,36 @@ public class OrderTester {
 
         ConfigurableEnvironment environment = applicationContext.getEnvironment();
         String version = environment.getProperty("kdt.version");
-        System.out.println("version = " + version);
+        logger.info("version = " + version);
         Integer property = environment.getProperty("kdt.minimum-order-amount", Integer.class);
-        System.out.println("property = " + property);
+        logger.info("property = " + property);
         List property1 = environment.getProperty("kdt.support-vendors", List.class);
-        System.out.println("support-vendors = " + property1);
+        logger.info("support-vendors = " + property1);
         List property2 = environment.getProperty("kdt.description", List.class);
-        System.out.println("property2 = " + property2);
+        logger.info("property2 = " + property2);
 
         var customerId = UUID.randomUUID();
 
         OrderProperties bean = applicationContext.getBean(OrderProperties.class);
         String version1 = bean.getVersion();
-        System.out.println("version1[forBean] = " + version1);
+        logger.info("version1[forBean] = " + version1);
         int minimumOrderAmount = bean.getMinimumOrderAmount();
-        System.out.println("minimumOrderAmount[forBean] = " + minimumOrderAmount);
+        logger.info("minimumOrderAmount[forBean] = " + minimumOrderAmount);
         List<String> supportVendors = bean.getSupportVendors();
-        System.out.println("supportVendors[forBean] = " + supportVendors);
+        logger.info("supportVendors[forBean] = " + supportVendors);
         String description = bean.getDescription();
-        System.out.println("description[forBean] = " + description);
+        logger.info("description[forBean] = " + description);
 
 //        var voucherRepository = applicationContext.getBean(VoucherRepository.class);
 
 
         VoucherRepository voucherRepository = applicationContext.getBean(VoucherRepository.class);
 //        var voucherRepository = BeanFactoryAnnotationUtils.qualifiedBeanOfType(applicationContext.getBeanFactory(), VoucherRepository.class, "memory");
-        System.out.println(MessageFormat.format("voucherRepository = {0}", voucherRepository));
+        logger.info(MessageFormat.format("voucherRepository = {0}", voucherRepository));
 //        var voucherRepository2 = BeanFactoryAnnotationUtils.qualifiedBeanOfType(applicationContext.getBeanFactory(), VoucherRepository.class, "memory");
-//        System.out.println(MessageFormat.format("voucherRepository2 = {0}", voucherRepository2));
+//        logger.info(MessageFormat.format("voucherRepository2 = {0}", voucherRepository2));
 
-//        System.out.println(MessageFormat.format("voucherRepository == voucherRepository2 -> {0}", voucherRepository == voucherRepository2));
+//        logger.info(MessageFormat.format("voucherRepository == voucherRepository2 -> {0}", voucherRepository == voucherRepository2));
 
         var voucher = voucherRepository.insert(new FixedAmountVoucher(UUID.randomUUID(), 10L));
 
