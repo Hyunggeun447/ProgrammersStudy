@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @SpringBootApplication
 public class OrderTester {
@@ -43,7 +42,7 @@ public class OrderTester {
 //        environment.setActiveProfiles("local");
 //        applicationContext.refresh();
 
-        Resource resource = applicationContext.getResource("application.yaml");
+        Resource resource = applicationContext.getResource("application.yml");
 
 //        Resource resource = applicationContext.getResource("file:sample.txt");
         System.out.println("resource = " + resource.getClass().getCanonicalName());
@@ -51,10 +50,10 @@ public class OrderTester {
         List<String> strings = Files.readAllLines(file.toPath());
         logger.info("strings = " + strings.stream().reduce("", (a, b) -> a + "\n" + b));
 
-//        Resource resource2 = applicationContext.getResource("https://stackoverflow.com/");
-//        ReadableByteChannel readableByteChannel = Channels.newChannel(resource2.getURL().openStream());
-//        String collect = new BufferedReader(Channels.newReader(readableByteChannel, StandardCharsets.UTF_8)).lines().collect(Collectors.joining("\n"));
-//        logger.info("collect = " + collect);
+        Resource resource2 = applicationContext.getResource("https://stackoverflow.com/");
+        ReadableByteChannel readableByteChannel = Channels.newChannel(resource2.getURL().openStream());
+        String collect = new BufferedReader(Channels.newReader(readableByteChannel, StandardCharsets.UTF_8)).lines().collect(Collectors.joining("\n"));
+        logger.info("collect = " + collect);
 
         /**
          * Environment 활용하기
