@@ -1,0 +1,40 @@
+01:48:08.339 [main] INFO  com.kdt.progmrs.kdt.OrderTester - version = v1.0
+01:48:08.341 [main] INFO  com.kdt.progmrs.kdt.OrderTester - property = 12
+01:48:08.341 [main] INFO  com.kdt.progmrs.kdt.OrderTester - support-vendors = null
+01:48:08.342 [main] INFO  com.kdt.progmrs.kdt.OrderTester - property2 = [line 1 hello world
+line 2 xxxx
+line 3]
+01:48:08.342 [main] INFO  com.kdt.progmrs.kdt.OrderTester - version1[forBean] = v1.0
+01:48:08.342 [main] INFO  com.kdt.progmrs.kdt.OrderTester - minimumOrderAmount[forBean] = 12
+01:48:08.342 [main] INFO  com.kdt.progmrs.kdt.OrderTester - supportVendors[forBean] = null
+01:48:08.342 [main] INFO  com.kdt.progmrs.kdt.OrderTester - description[forBean] = line 1 hello world
+line 2 xxxx
+line 3
+01:48:08.343 [main] INFO  com.kdt.progmrs.kdt.OrderTester - voucherRepository = com.kdt.progmrs.kdt.voucher.MemoryVoucherRepository@2a65bb85
+01:48:35.690 [main] INFO  com.kdt.progmrs.kdt.OrderTester - strings = 
+kdt:
+  version: "v1.0"
+  minimum-order-amount: 12
+  support-venders:
+    - a
+    - b
+    - c
+    - d
+    - e
+  description: |- 
+    line 1 hello world
+    line 2 xxxx
+    line 3
+01:48:35.692 [main] INFO  com.kdt.progmrs.kdt.OrderTester - version = v1.0
+01:48:35.692 [main] INFO  com.kdt.progmrs.kdt.OrderTester - property = 12
+01:48:35.692 [main] INFO  com.kdt.progmrs.kdt.OrderTester - support-vendors = null
+01:48:35.693 [main] INFO  com.kdt.progmrs.kdt.OrderTester - property2 = [line 1 hello world
+line 2 xxxx
+line 3]
+01:48:35.694 [main] INFO  com.kdt.progmrs.kdt.OrderTester - version1[forBean] = v1.0
+01:48:35.694 [main] INFO  com.kdt.progmrs.kdt.OrderTester - minimumOrderAmount[forBean] = 12
+01:48:35.694 [main] INFO  com.kdt.progmrs.kdt.OrderTester - supportVendors[forBean] = null
+01:48:35.694 [main] INFO  com.kdt.progmrs.kdt.OrderTester - description[forBean] = line 1 hello world
+line 2 xxxx
+line 3
+01:48:35.694 [main] INFO  com.kdt.progmrs.kdt.OrderTester - voucherRepository = com.kdt.progmrs.kdt.voucher.MemoryVoucherRepository@4f936da8

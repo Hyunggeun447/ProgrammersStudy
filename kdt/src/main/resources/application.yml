@@ -7,7 +7,7 @@ kdt:
     - c
     - d
     - e
-  description: |-
+  description: |- 
     line 1 hello world
     line 2 xxxx
     line 3

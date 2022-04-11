@@ -1,135 +1,24 @@
-17:20:45.760 [main] INFO  com.kdt.progmrs.kdt.OrderTester - strings = 
-kdt:
-  version: "v1.0"
-  minimum-order-amount: 12
-  support-venders:
-    - a
-    - b
-    - c
-    - d
-    - e
-  description: |-
-    line 1 hello world
-    line 2 xxxx
-    line 3
-17:20:45.761 [main] INFO  com.kdt.progmrs.kdt.OrderTester - version = v1.0
-17:20:45.761 [main] INFO  com.kdt.progmrs.kdt.OrderTester - property = 12
-17:20:45.761 [main] INFO  com.kdt.progmrs.kdt.OrderTester - support-vendors = null
-17:20:45.761 [main] INFO  com.kdt.progmrs.kdt.OrderTester - property2 = [line 1 hello world
-line 2 xxxx
-line 3]
-17:20:45.762 [main] INFO  com.kdt.progmrs.kdt.OrderTester - version1[forBean] = v1.0
-17:20:45.762 [main] INFO  com.kdt.progmrs.kdt.OrderTester - minimumOrderAmount[forBean] = 12
-17:20:45.762 [main] INFO  com.kdt.progmrs.kdt.OrderTester - supportVendors[forBean] = null
-17:20:45.762 [main] INFO  com.kdt.progmrs.kdt.OrderTester - description[forBean] = line 1 hello world
-line 2 xxxx
-line 3
-17:20:45.762 [main] INFO  com.kdt.progmrs.kdt.OrderTester - voucherRepository = com.kdt.progmrs.kdt.voucher.MemoryVoucherRepository@2f058b8a
-17:20:49.823 [main] INFO  com.kdt.progmrs.kdt.OrderTester - strings = 
-kdt:
-  version: "v1.0"
-  minimum-order-amount: 12
-  support-venders:
-    - a
-    - b
-    - c
-    - d
-    - e
-  description: |-
-    line 1 hello world
-    line 2 xxxx
-    line 3
-17:20:49.824 [main] INFO  com.kdt.progmrs.kdt.OrderTester - version = v1.0
-17:20:49.824 [main] INFO  com.kdt.progmrs.kdt.OrderTester - property = 12
-17:20:49.824 [main] INFO  com.kdt.progmrs.kdt.OrderTester - support-vendors = null
-17:20:49.825 [main] INFO  com.kdt.progmrs.kdt.OrderTester - property2 = [line 1 hello world
-line 2 xxxx
-line 3]
-17:20:49.825 [main] INFO  com.kdt.progmrs.kdt.OrderTester - version1[forBean] = v1.0
-17:20:49.825 [main] INFO  com.kdt.progmrs.kdt.OrderTester - minimumOrderAmount[forBean] = 12
-17:20:49.825 [main] INFO  com.kdt.progmrs.kdt.OrderTester - supportVendors[forBean] = null
-17:20:49.825 [main] INFO  com.kdt.progmrs.kdt.OrderTester - description[forBean] = line 1 hello world
-line 2 xxxx
-line 3
-17:20:49.826 [main] INFO  com.kdt.progmrs.kdt.OrderTester - voucherRepository = com.kdt.progmrs.kdt.voucher.MemoryVoucherRepository@2f058b8a
-17:22:09.839 [main] INFO  com.kdt.progmrs.kdt.OrderTester - strings = 
-kdt:
-  version: "v1.0"
-  minimum-order-amount: 12
-  support-venders:
-    - a
-    - b
-    - c
-    - d
-    - e
-  description: |-
-    line 1 hello world
-    line 2 xxxx
-    line 3
-17:22:09.840 [main] INFO  com.kdt.progmrs.kdt.OrderTester - version = v1.0
-17:22:09.840 [main] INFO  com.kdt.progmrs.kdt.OrderTester - property = 12
-17:22:09.840 [main] INFO  com.kdt.progmrs.kdt.OrderTester - support-vendors = null
-17:22:09.841 [main] INFO  com.kdt.progmrs.kdt.OrderTester - property2 = [line 1 hello world
-line 2 xxxx
-line 3]
-17:22:09.841 [main] INFO  com.kdt.progmrs.kdt.OrderTester - version1[forBean] = v1.0
-17:22:09.841 [main] INFO  com.kdt.progmrs.kdt.OrderTester - minimumOrderAmount[forBean] = 12
-17:22:09.842 [main] INFO  com.kdt.progmrs.kdt.OrderTester - supportVendors[forBean] = null
-17:22:09.842 [main] INFO  com.kdt.progmrs.kdt.OrderTester - description[forBean] = line 1 hello world
-line 2 xxxx
-line 3
-17:22:09.842 [main] INFO  com.kdt.progmrs.kdt.OrderTester - voucherRepository = com.kdt.progmrs.kdt.voucher.MemoryVoucherRepository@2f058b8a
-17:22:15.719 [main] INFO  com.kdt.progmrs.kdt.OrderTester - strings = 
-kdt:
-  version: "v1.0"
-  minimum-order-amount: 12
-  support-venders:
-    - a
-    - b
-    - c
-    - d
-    - e
-  description: |-
-    line 1 hello world
-    line 2 xxxx
-    line 3
-17:22:15.720 [main] INFO  com.kdt.progmrs.kdt.OrderTester - version = v1.0
-17:22:15.720 [main] INFO  com.kdt.progmrs.kdt.OrderTester - property = 12
-17:22:15.720 [main] INFO  com.kdt.progmrs.kdt.OrderTester - support-vendors = null
-17:22:15.721 [main] INFO  com.kdt.progmrs.kdt.OrderTester - property2 = [line 1 hello world
-line 2 xxxx
-line 3]
-17:22:15.721 [main] INFO  com.kdt.progmrs.kdt.OrderTester - version1[forBean] = v1.0
-17:22:15.721 [main] INFO  com.kdt.progmrs.kdt.OrderTester - minimumOrderAmount[forBean] = 12
-17:22:15.721 [main] INFO  com.kdt.progmrs.kdt.OrderTester - supportVendors[forBean] = null
-17:22:15.721 [main] INFO  com.kdt.progmrs.kdt.OrderTester - description[forBean] = line 1 hello world
-line 2 xxxx
-line 3
-17:22:15.722 [main] INFO  com.kdt.progmrs.kdt.OrderTester - voucherRepository = com.kdt.progmrs.kdt.voucher.MemoryVoucherRepository@2f058b8a
-17:31:40.873 [main] INFO  com.kdt.progmrs.kdt.OrderTester - strings = 
-kdt:
-  version: "v1.0"
-  minimum-order-amount: 12
-  support-venders:
-    - a
-    - b
-    - c
-    - d
-    - e
-  description: |-
-    line 1 hello world
-    line 2 xxxx
-    line 3
-17:31:40.874 [main] INFO  com.kdt.progmrs.kdt.OrderTester - version = v1.0
-17:31:40.875 [main] INFO  com.kdt.progmrs.kdt.OrderTester - property = 12
-17:31:40.875 [main] INFO  com.kdt.progmrs.kdt.OrderTester - support-vendors = null
-17:31:40.877 [main] INFO  com.kdt.progmrs.kdt.OrderTester - property2 = [line 1 hello world
-line 2 xxxx
-line 3]
-17:31:40.877 [main] INFO  com.kdt.progmrs.kdt.OrderTester - version1[forBean] = v1.0
-17:31:40.877 [main] INFO  com.kdt.progmrs.kdt.OrderTester - minimumOrderAmount[forBean] = 12
-17:31:40.878 [main] INFO  com.kdt.progmrs.kdt.OrderTester - supportVendors[forBean] = null
-17:31:40.878 [main] INFO  com.kdt.progmrs.kdt.OrderTester - description[forBean] = line 1 hello world
-line 2 xxxx
-line 3
-17:31:40.878 [main] INFO  com.kdt.progmrs.kdt.OrderTester - voucherRepository = com.kdt.progmrs.kdt.voucher.MemoryVoucherRepository@4f936da8
+15:20:16.932 [main] INFO  com.kdt.progmrs.kdt.OrderTesterTest - @BeforeALl - 한번 실행
+15:20:16.946 [main] INFO  com.kdt.progmrs.kdt.OrderTesterTest - @BeforeEach
+15:20:16.986 [main] INFO  com.kdt.progmrs.kdt.OrderTesterTest - @BeforeEach
+15:20:16.990 [main] INFO  com.kdt.progmrs.kdt.OrderTesterTest - @BeforeEach
+15:22:35.773 [main] INFO  com.kdt.progmrs.kdt.OrderTesterTest - @BeforeALl - 한번 실행
+15:22:35.788 [main] INFO  com.kdt.progmrs.kdt.OrderTesterTest - @BeforeEach
+15:22:35.838 [main] INFO  com.kdt.progmrs.kdt.OrderTesterTest - @BeforeEach
+15:22:35.842 [main] INFO  com.kdt.progmrs.kdt.OrderTesterTest - @BeforeEach
+15:22:35.848 [main] INFO  com.kdt.progmrs.kdt.OrderTesterTest - @BeforeEach
+15:24:36.919 [main] INFO  com.kdt.progmrs.kdt.OrderTesterTest - @BeforeALl - 한번 실행
+15:24:36.934 [main] INFO  com.kdt.progmrs.kdt.OrderTesterTest - @BeforeEach
+15:24:36.964 [main] INFO  com.kdt.progmrs.kdt.OrderTesterTest - @BeforeEach
+15:24:36.969 [main] INFO  com.kdt.progmrs.kdt.OrderTesterTest - @BeforeEach
+15:24:36.974 [main] INFO  com.kdt.progmrs.kdt.OrderTesterTest - @BeforeEach
+15:29:19.328 [main] INFO  com.kdt.progmrs.kdt.OrderTesterTest - @BeforeALl - 한번 실행
+15:29:19.344 [main] INFO  com.kdt.progmrs.kdt.OrderTesterTest - @BeforeEach
+15:29:51.127 [main] INFO  com.kdt.progmrs.kdt.OrderTesterTest - @BeforeALl - 한번 실행
+15:29:51.143 [main] INFO  com.kdt.progmrs.kdt.OrderTesterTest - @BeforeEach
+15:30:11.712 [main] INFO  com.kdt.progmrs.kdt.OrderTesterTest - @BeforeALl - 한번 실행
+15:30:11.764 [main] INFO  com.kdt.progmrs.kdt.OrderTesterTest - @BeforeEach
+15:30:11.840 [main] INFO  com.kdt.progmrs.kdt.OrderTesterTest - @BeforeEach
+15:30:11.845 [main] INFO  com.kdt.progmrs.kdt.OrderTesterTest - @BeforeEach
+15:30:11.849 [main] INFO  com.kdt.progmrs.kdt.OrderTesterTest - @BeforeEach
+15:30:11.852 [main] INFO  com.kdt.progmrs.kdt.OrderTesterTest - @BeforeEach
