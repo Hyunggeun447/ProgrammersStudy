@@ -22,3 +22,6 @@
 15:30:11.845 [main] INFO  com.kdt.progmrs.kdt.OrderTesterTest - @BeforeEach
 15:30:11.849 [main] INFO  com.kdt.progmrs.kdt.OrderTesterTest - @BeforeEach
 15:30:11.852 [main] INFO  com.kdt.progmrs.kdt.OrderTesterTest - @BeforeEach
+18:25:51.938 [main] INFO  c.k.p.k.jdbc.JdbcCustomerRepository - customerId -> 56fe9813-04f2-337d-bc19-b8b338a9b2b9, name -> tester00
+18:25:51.945 [main] INFO  c.k.p.k.jdbc.JdbcCustomerRepository - customerId -> 4dd49478-cdcc-3fbe-93c9-41ef64d79ab8, name -> tester01
+18:25:51.945 [main] INFO  c.k.p.k.jdbc.JdbcCustomerRepository - customerId -> 4d57c79e-98e8-391e-8ccc-e964ad75598a, name -> tester02
