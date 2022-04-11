@@ -73,3 +73,58 @@ java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check th
 	at com.mysql.cj.jdbc.StatementImpl.executeQuery(StatementImpl.java:1201)
 	at com.kdt.progmrs.kdt.jdbc.JdbcCustomerRepository.findNames(JdbcCustomerRepository.java:24)
 	at com.kdt.progmrs.kdt.jdbc.JdbcCustomerRepository.main(JdbcCustomerRepository.java:42)
+19:10:12.944 [main] ERROR c.k.p.k.jdbc.JdbcCustomerRepository - Got error while closing connection
+java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'newEmail@asd.com' for key 'customers.unq_user_email'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1098)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1046)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1371)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1031)
+	at com.kdt.progmrs.kdt.jdbc.JdbcCustomerRepository.insertCustomer(JdbcCustomerRepository.java:73)
+	at com.kdt.progmrs.kdt.jdbc.JdbcCustomerRepository.main(JdbcCustomerRepository.java:91)
+19:32:04.858 [main] ERROR c.k.p.k.jdbc.JdbcCustomerRepository - Got error while closing connection
+java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'newEmail@asd.com' for key 'customers.unq_user_email'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1098)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1046)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1371)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1031)
+	at com.kdt.progmrs.kdt.jdbc.JdbcCustomerRepository.insertCustomer(JdbcCustomerRepository.java:75)
+	at com.kdt.progmrs.kdt.jdbc.JdbcCustomerRepository.main(JdbcCustomerRepository.java:125)
+19:32:04.930 [main] ERROR c.k.p.k.jdbc.JdbcCustomerRepository - Got error while closing connection
+java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'newEmail@asd.com' for key 'customers.unq_user_email'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1098)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1046)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1371)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1031)
+	at com.kdt.progmrs.kdt.jdbc.JdbcCustomerRepository.insertCustomer(JdbcCustomerRepository.java:75)
+	at com.kdt.progmrs.kdt.jdbc.JdbcCustomerRepository.main(JdbcCustomerRepository.java:126)
+19:34:25.315 [main] ERROR c.k.p.k.jdbc.JdbcCustomerRepository - Got error while closing connection
+java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'newEmail@asd.com' for key 'customers.unq_user_email'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1098)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1046)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1371)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1031)
+	at com.kdt.progmrs.kdt.jdbc.JdbcCustomerRepository.insertCustomer(JdbcCustomerRepository.java:75)
+	at com.kdt.progmrs.kdt.jdbc.JdbcCustomerRepository.main(JdbcCustomerRepository.java:125)
+19:34:25.382 [main] ERROR c.k.p.k.jdbc.JdbcCustomerRepository - Got error while closing connection
+java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'newEmail@asd.com' for key 'customers.unq_user_email'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1098)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1046)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1371)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1031)
+	at com.kdt.progmrs.kdt.jdbc.JdbcCustomerRepository.insertCustomer(JdbcCustomerRepository.java:75)
+	at com.kdt.progmrs.kdt.jdbc.JdbcCustomerRepository.main(JdbcCustomerRepository.java:126)
