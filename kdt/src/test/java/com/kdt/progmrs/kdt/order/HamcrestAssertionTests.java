@@ -1,5 +1,6 @@
 package com.kdt.progmrs.kdt.order;
 
+import org.assertj.core.api.Assertions;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,8 @@ public class HamcrestAssertionTests {
 
         assertNotEquals(1, 1 + 1);
         assertThat(1 + 1, not(equalTo(1)));
+
+        Assertions.assertThat(2).isEqualTo(2);
 
     }
 

@@ -1,11 +1,13 @@
 package com.kdt.progmrs.kdt.order;
 
 import com.kdt.progmrs.kdt.voucher.Voucher;
+import lombok.Getter;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Getter
 public class Order {
 
     private final UUID orderId;
