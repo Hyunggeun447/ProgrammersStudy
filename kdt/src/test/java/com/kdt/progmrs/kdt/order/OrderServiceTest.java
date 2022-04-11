@@ -6,11 +6,15 @@ import com.kdt.progmrs.kdt.voucher.VoucherService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InOrder;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoRule;
 
 import java.util.List;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 public class OrderServiceTest {
 
@@ -49,10 +53,26 @@ public class OrderServiceTest {
     public void createOrderByMock() throws Exception {
 
         //given
+        VoucherService voucherServiceMock = mock(VoucherService.class);
+        OrderRepository orderRepositoryMock = mock(OrderRepository.class);
+        FixedAmountVoucher fixedAmountVoucher = new FixedAmountVoucher(UUID.randomUUID(), 100);
+
+        when(voucherServiceMock.getVoucher(fixedAmountVoucher.getVoucherId())).thenReturn(fixedAmountVoucher);
+        OrderService orderService = new OrderService(voucherServiceMock, orderRepositoryMock);
 
         //when
+        Order order = orderService.createOrder(UUID.randomUUID(),
+                List.of(new OrderItem(UUID.randomUUID(), 200, 1)),
+                fixedAmountVoucher.getVoucherId());
 
         //then
+        InOrder inOrder = inOrder(voucherServiceMock, orderRepositoryMock);
+
+        assertThat(order.totalAmount()).isEqualTo(100);
+        assertThat(order.getVoucher()).isNotEmpty();
+        inOrder.verify(voucherServiceMock).getVoucher(fixedAmountVoucher.getVoucherId());
+        inOrder.verify(orderRepositoryMock).insert(order);
+        inOrder.verify(voucherServiceMock).useVoucher(fixedAmountVoucher);
 
     }
 }
