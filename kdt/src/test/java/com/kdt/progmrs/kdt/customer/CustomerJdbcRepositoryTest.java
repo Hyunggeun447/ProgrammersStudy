@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import javax.sql.DataSource;
@@ -42,6 +43,11 @@ class CustomerJdbcRepositoryTest {
                     .password("1234")
                     .type(HikariDataSource.class)
                     .build();
+        }
+
+        @Bean
+        public JdbcTemplate jdbcTemplate(DataSource dataSource) {
+            return new JdbcTemplate(dataSource);
         }
     }
 
@@ -129,5 +135,12 @@ class CustomerJdbcRepositoryTest {
         assertThat(newNameNew.isPresent()).isTrue();
 
 
+    }
+
+    @Test
+    public void countTest() throws Exception {
+
+        int i = customerRepository.countAll();
+        assertThat(i).isEqualTo(1);
     }
 }
