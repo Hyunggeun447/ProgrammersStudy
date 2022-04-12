@@ -3,12 +3,9 @@ package com.kdt.progmrs.kdt.order;
 import com.kdt.progmrs.kdt.voucher.FixedAmountVoucher;
 import com.kdt.progmrs.kdt.voucher.MemoryVoucherRepository;
 import com.kdt.progmrs.kdt.voucher.VoucherService;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
-import org.mockito.Mockito;
-import org.mockito.junit.MockitoRule;
 
 import java.util.List;
 import java.util.UUID;

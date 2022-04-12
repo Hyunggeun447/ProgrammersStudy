@@ -100,7 +100,6 @@ public class JdbcCustomerRepository {
 
     public int deleteAllCustomer() {
 
-        List<String> names = new ArrayList<>();
         try (
                 Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/order_mgmt", "root", "1234");
                 PreparedStatement statement = connection.prepareStatement(DELETE_ALL_SQL);
@@ -121,14 +120,19 @@ public class JdbcCustomerRepository {
                 ResultSet resultSet = statement.executeQuery();
         ) {
             while (resultSet.next()) {
-                ByteBuffer byteBuffer = ByteBuffer.wrap(resultSet.getBytes("customer_Id"));
-                UUID customerId = new UUID(byteBuffer.getLong(), byteBuffer.getLong());
+                UUID customerId = toUUID(resultSet.getBytes("customer_Id"));
                 uuids.add(customerId);
             }
         } catch (SQLException e) {
             log.error("Got error while closing connection", e);
         }
         return uuids;
+    }
+
+    static UUID toUUID(byte[] bytes) {
+        ByteBuffer byteBuffer = ByteBuffer.wrap(bytes);
+        UUID customerId = new UUID(byteBuffer.getLong(), byteBuffer.getLong());
+        return customerId;
     }
 
     public static void main(String[] args) {
