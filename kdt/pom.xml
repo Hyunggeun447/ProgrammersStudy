@@ -26,6 +26,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
+<!-- 임베디드 마이 시퀄-->
+		<dependency>
+			<groupId>com.wix</groupId>
+			<artifactId>wix-embedded-mysql</artifactId>
+			<version>4.6.2</version>
+			<scope>test</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

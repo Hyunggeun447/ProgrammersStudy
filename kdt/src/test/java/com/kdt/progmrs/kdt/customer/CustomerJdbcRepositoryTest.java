@@ -1,5 +1,7 @@
 package com.kdt.progmrs.kdt.customer;
 
+import com.wix.mysql.EmbeddedMysql;
+import com.wix.mysql.config.MysqldConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
@@ -11,6 +13,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import javax.sql.DataSource;
@@ -20,16 +24,21 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static com.wix.mysql.EmbeddedMysql.anEmbeddedMysql;
+import static com.wix.mysql.ScriptResolver.classPathScript;
+import static com.wix.mysql.config.MysqldConfig.aMysqldConfig;
+import static com.wix.mysql.config.Charset.UTF8;
+import static com.wix.mysql.distribution.Version.v8_0_11;
+import static org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType.H2;
+
 
 @SpringJUnitConfig
 @Slf4j
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CustomerJdbcRepositoryTest {
 
-    @Autowired
-    CustomerJdbcRepository customerRepository;
 
     @Configuration
     @ComponentScan(basePackages = {"com.kdt.progmrs.kdt"})
@@ -37,12 +46,26 @@ class CustomerJdbcRepositoryTest {
 
         @Bean
         public DataSource dataSource() {
-            return DataSourceBuilder.create()
-                    .url("jdbc:mysql://localhost/order_mgmt")
-                    .username("root")
-                    .password("1234")
+
+//            return new EmbeddedDatabaseBuilder()
+//                    .generateUniqueName(true)
+//                    .setType(H2)
+//                    .setScriptEncoding("UTF-8")
+//                    .ignoreFailedDrops(true)
+//                    .addScript("schema.sql")
+//                    .build();
+            HikariDataSource dataSource = DataSourceBuilder.create()
+//                    .url("jdbc:mysql://localhost/order_mgmt")
+                    .url("jdbc:mysql://localhost:2215/test-order_mgmt")
+//                    .username("root")
+                    .username("test")
+                    .password("1234!")
                     .type(HikariDataSource.class)
                     .build();
+
+
+
+            return dataSource;
         }
 
         @Bean
@@ -52,17 +75,47 @@ class CustomerJdbcRepositoryTest {
     }
 
     @Autowired
+    CustomerJdbcRepository customerRepository;
+
+    @Autowired
     DataSource dataSource;
+
+    EmbeddedMysql embeddedMysql;
+
+
+    @BeforeAll
+    void setup() {
+        MysqldConfig mysqldConfig = aMysqldConfig(v8_0_11)
+                .withCharset(UTF8)
+                .withPort(2215)
+                .withUser("test", "1234!")
+                .withTimeZone("Asia/Seoul")
+                .build();
+        embeddedMysql = anEmbeddedMysql(mysqldConfig)
+                .addSchema("test-order_mgmt", classPathScript("schema.sql"))
+                .start();
+
+    }
+
+
+    @AfterAll
+    void end() {
+        embeddedMysql.stop();
+    }
 
     @BeforeEach
     void cleanUp() {
         customerRepository.deleteAll();
-        Customer customer = new Customer(UUID.randomUUID(), "test-user", "test11-user@naver.com", LocalDateTime.now());
+        Customer customer = new Customer(UUID.randomUUID(),
+                "test-user",
+                "test11-user@naver.com",
+                LocalDateTime.now());
 
         customerRepository.insert(customer);
     }
 
     @Test
+//    @Disabled
     public void testHikariConnectionPool() throws Exception {
         assertThat(dataSource.getClass().getName()).isEqualTo("com.zaxxer.hikari.HikariDataSource");
     }
@@ -85,6 +138,7 @@ class CustomerJdbcRepositoryTest {
         assertThat(newMember1.isPresent()).isTrue();
 
     }
+
     @Test
     public void findByEmail() throws Exception {
 
@@ -93,6 +147,7 @@ class CustomerJdbcRepositoryTest {
         assertThat(byEmail.isPresent()).isTrue();
 
     }
+
     @Test
     public void findById() throws Exception {
 
