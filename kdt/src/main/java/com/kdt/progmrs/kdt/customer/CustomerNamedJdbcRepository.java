@@ -19,7 +19,6 @@ import java.util.*;
 @Repository
 public class CustomerNamedJdbcRepository implements CustomerRepository {
 
-
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
     public CustomerNamedJdbcRepository(NamedParameterJdbcTemplate jdbcTemplate) {
@@ -64,7 +63,6 @@ public class CustomerNamedJdbcRepository implements CustomerRepository {
         return customer;
     }
 
-
     @Override
     public List<Customer> findAll() {
         return jdbcTemplate.query("select * from customers", customerRowMapper());
@@ -80,16 +78,6 @@ public class CustomerNamedJdbcRepository implements CustomerRepository {
                     resultSet.getTimestamp("last_login_at").toLocalDateTime() : null;
             return new Customer(customerId, customerName, email, lastLoginAt, createdAt);
         };
-    }
-
-    private void mapToCustomer(List<Customer> allCustomers, ResultSet resultSet) throws SQLException {
-        String customerName = resultSet.getString("name");
-        UUID customerId = toUUID(resultSet.getBytes("customer_id"));
-        String email = resultSet.getString("email");
-        LocalDateTime createdAt = resultSet.getTimestamp("created_at").toLocalDateTime();
-        LocalDateTime lastLoginAt = resultSet.getTimestamp("last_login_at") != null ?
-                resultSet.getTimestamp("last_login_at").toLocalDateTime() : null;
-        allCustomers.add(new Customer(customerId, customerName, email, lastLoginAt, createdAt));
     }
 
     @Override
@@ -145,4 +133,14 @@ public class CustomerNamedJdbcRepository implements CustomerRepository {
         UUID customerId = new UUID(byteBuffer.getLong(), byteBuffer.getLong());
         return customerId;
     }
+
+//    private void mapToCustomer(List<Customer> allCustomers, ResultSet resultSet) throws SQLException {
+//        String customerName = resultSet.getString("name");
+//        UUID customerId = toUUID(resultSet.getBytes("customer_id"));
+//        String email = resultSet.getString("email");
+//        LocalDateTime createdAt = resultSet.getTimestamp("created_at").toLocalDateTime();
+//        LocalDateTime lastLoginAt = resultSet.getTimestamp("last_login_at") != null ?
+//                resultSet.getTimestamp("last_login_at").toLocalDateTime() : null;
+//        allCustomers.add(new Customer(customerId, customerName, email, lastLoginAt, createdAt));
+//    }
 }
