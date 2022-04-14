@@ -1,17 +1,10 @@
 package com.kdt.progmrs.kdt.customer;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
-import org.springframework.transaction.support.TransactionCallbackWithoutResult;
-import org.springframework.transaction.support.TransactionTemplate;
 
 import java.nio.ByteBuffer;
 import java.sql.Timestamp;
@@ -23,11 +16,11 @@ import java.util.*;
 public class CustomerNamedJdbcRepository implements CustomerRepository {
 
     private final NamedParameterJdbcTemplate jdbcTemplate;
-    private final TransactionTemplate transactionTemplate;
+//    private final TransactionTemplate transactionTemplate;
 
-    public CustomerNamedJdbcRepository(NamedParameterJdbcTemplate jdbcTemplate, TransactionTemplate transactionTemplate) {
+    public CustomerNamedJdbcRepository(NamedParameterJdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-        this.transactionTemplate = transactionTemplate;
+//        this.transactionTemplate = transactionTemplate;
     }
 
     private Map<String, Object> toParamMap(Customer customer) {
@@ -150,13 +143,13 @@ public class CustomerNamedJdbcRepository implements CustomerRepository {
 //    }
 
 
-    public void testTransaction(Customer customer) {
-        transactionTemplate.execute(new TransactionCallbackWithoutResult() {
-            @Override
-            protected void doInTransactionWithoutResult(TransactionStatus status) {
-                jdbcTemplate.update("update customers set name = :name where customer_id = UUID_TO_BIN(:customerId)", toParamMap(customer));
-                jdbcTemplate.update("update customers set email = :email where customer_id = UUID_TO_BIN(:customerId)", toParamMap(customer));
-            }
-        });
-    }
+//    public void testTransaction(Customer customer) {
+//        transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+//            @Override
+//            protected void doInTransactionWithoutResult(TransactionStatus status) {
+//                jdbcTemplate.update("update customers set name = :name where customer_id = UUID_TO_BIN(:customerId)", toParamMap(customer));
+//                jdbcTemplate.update("update customers set email = :email where customer_id = UUID_TO_BIN(:customerId)", toParamMap(customer));
+//            }
+//        });
+//    }
 }

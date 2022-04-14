@@ -217,39 +217,39 @@ class CustomerNamedJdbcRepositoryTest {
         int i = customerRepository.countAll();
         assertThat(i).isEqualTo(1);
     }
-
-    @Test
-    @DisplayName("트랜젝션 테스트")
-    public void transactionTest() throws Exception {
-
-        Optional<Customer> preOne = customerRepository.findById(customer.getCustomerId());
-        assertThat(preOne.isPresent()).isTrue();
-
-        Customer newOne = new Customer(UUID.randomUUID(), "a", "aE@naver.com", LocalDateTime.now());
-        Customer insertedNewOne = customerRepository.insert(newOne);
-        Customer customer = customerRepository.findById(insertedNewOne.getCustomerId()).get();
-
-        try {
-            customerRepository.testTransaction(
-                    new Customer(insertedNewOne.getCustomerId(),
-                            "b",
-                            preOne.get().getEmail(),
-                            newOne.getCreatedAt()
-                    ));
-        } catch (DataAccessException e) {
-
-        }
-
-        Optional<Customer> maybeNewOne = customerRepository.findById(insertedNewOne.getCustomerId());
-
-        assertThat(maybeNewOne.isPresent()).isTrue();
-
-        assertThat(maybeNewOne.get().getName()).isEqualTo(newOne.getName());
-        assertThat(maybeNewOne.get().getEmail()).isEqualTo(newOne.getEmail());
-        assertThat(maybeNewOne.get().getCustomerId()).isEqualTo(newOne.getCustomerId());
-
-//        assertThat(maybeNewOne.get()).isSameAs(insertedNewOne);
-        assertThat(maybeNewOne.get(), samePropertyValuesAs(newOne));
-
-    }
+//
+//    @Test
+//    @DisplayName("트랜젝션 테스트")
+//    public void transactionTest() throws Exception {
+//
+//        Optional<Customer> preOne = customerRepository.findById(customer.getCustomerId());
+//        assertThat(preOne.isPresent()).isTrue();
+//
+//        Customer newOne = new Customer(UUID.randomUUID(), "a", "aE@naver.com", LocalDateTime.now());
+//        Customer insertedNewOne = customerRepository.insert(newOne);
+//        Customer customer = customerRepository.findById(insertedNewOne.getCustomerId()).get();
+//
+//        try {
+//            customerRepository.testTransaction(
+//                    new Customer(insertedNewOne.getCustomerId(),
+//                            "b",
+//                            preOne.get().getEmail(),
+//                            newOne.getCreatedAt()
+//                    ));
+//        } catch (DataAccessException e) {
+//
+//        }
+//
+//        Optional<Customer> maybeNewOne = customerRepository.findById(insertedNewOne.getCustomerId());
+//
+//        assertThat(maybeNewOne.isPresent()).isTrue();
+//
+//        assertThat(maybeNewOne.get().getName()).isEqualTo(newOne.getName());
+//        assertThat(maybeNewOne.get().getEmail()).isEqualTo(newOne.getEmail());
+//        assertThat(maybeNewOne.get().getCustomerId()).isEqualTo(newOne.getCustomerId());
+//
+////        assertThat(maybeNewOne.get()).isSameAs(insertedNewOne);
+//        assertThat(maybeNewOne.get(), samePropertyValuesAs(newOne));
+//
+//    }
 }
