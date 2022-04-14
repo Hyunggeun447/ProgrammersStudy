@@ -32,6 +32,8 @@ public class AopTest {
 
     @Autowired
     VoucherService voucherService;
+    @Autowired
+    VoucherRepository voucherRepository;
 
 
     @Test

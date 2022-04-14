@@ -1,16 +1,19 @@
 package com.kdt.progmrs.kdt.customer;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
+import org.springframework.transaction.support.TransactionCallbackWithoutResult;
+import org.springframework.transaction.support.TransactionTemplate;
 
-import javax.sql.DataSource;
 import java.nio.ByteBuffer;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -20,9 +23,11 @@ import java.util.*;
 public class CustomerNamedJdbcRepository implements CustomerRepository {
 
     private final NamedParameterJdbcTemplate jdbcTemplate;
+    private final TransactionTemplate transactionTemplate;
 
-    public CustomerNamedJdbcRepository(NamedParameterJdbcTemplate jdbcTemplate) {
+    public CustomerNamedJdbcRepository(NamedParameterJdbcTemplate jdbcTemplate, TransactionTemplate transactionTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+        this.transactionTemplate = transactionTemplate;
     }
 
     private Map<String, Object> toParamMap(Customer customer) {
@@ -83,7 +88,7 @@ public class CustomerNamedJdbcRepository implements CustomerRepository {
     @Override
     public Optional<Customer> findById(UUID customerId) {
         try {
-            return Optional.ofNullable(jdbcTemplate.queryForObject("select * from customers where customer_id  = UUId_TO_BIN(:customerId)",
+            return Optional.ofNullable(jdbcTemplate.queryForObject("select * from customers where customer_id  = UUID_TO_BIN(:customerId)",
                     Collections.singletonMap("customerId",customerId.toString().getBytes()),
                     customerRowMapper()));
 
@@ -143,4 +148,15 @@ public class CustomerNamedJdbcRepository implements CustomerRepository {
 //                resultSet.getTimestamp("last_login_at").toLocalDateTime() : null;
 //        allCustomers.add(new Customer(customerId, customerName, email, lastLoginAt, createdAt));
 //    }
+
+
+    public void testTransaction(Customer customer) {
+        transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+            @Override
+            protected void doInTransactionWithoutResult(TransactionStatus status) {
+                jdbcTemplate.update("update customers set name = :name where customer_id = UUID_TO_BIN(:customerId)", toParamMap(customer));
+                jdbcTemplate.update("update customers set email = :email where customer_id = UUID_TO_BIN(:customerId)", toParamMap(customer));
+            }
+        });
+    }
 }

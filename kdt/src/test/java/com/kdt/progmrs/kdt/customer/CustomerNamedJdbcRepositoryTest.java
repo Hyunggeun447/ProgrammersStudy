@@ -10,11 +10,15 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DuplicateKeyException;
-import org.springframework.jdbc.BadSqlGrammarException;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.support.TransactionTemplate;
+
+import static org.hamcrest.Matchers.*;
 
 import javax.sql.DataSource;
 import java.time.LocalDateTime;
@@ -28,6 +32,7 @@ import static com.wix.mysql.config.Charset.UTF8;
 import static com.wix.mysql.config.MysqldConfig.aMysqldConfig;
 import static com.wix.mysql.distribution.Version.v8_0_11;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 
 @SpringJUnitConfig
@@ -69,6 +74,16 @@ class CustomerNamedJdbcRepositoryTest {
         public NamedParameterJdbcTemplate jdbcTemplate(DataSource dataSource) {
             return new NamedParameterJdbcTemplate(dataSource);
         }
+
+        @Bean
+        public PlatformTransactionManager platformTransactionManager(DataSource dataSource) {
+            return new DataSourceTransactionManager(dataSource);
+        }
+
+        @Bean
+        public TransactionTemplate transactionTemplate(PlatformTransactionManager platformTransactionManager) {
+            return new TransactionTemplate(platformTransactionManager);
+        }
     }
 
     @Autowired
@@ -100,10 +115,12 @@ class CustomerNamedJdbcRepositoryTest {
         embeddedMysql.stop();
     }
 
+    Customer customer;
+
     @BeforeEach
     void cleanUp() {
         customerRepository.deleteAll();
-        Customer customer = new Customer(UUID.randomUUID(),
+        customer = new Customer(UUID.randomUUID(),
                 "test-user",
                 "test11-user@naver.com",
                 LocalDateTime.now());
@@ -199,5 +216,40 @@ class CustomerNamedJdbcRepositoryTest {
 
         int i = customerRepository.countAll();
         assertThat(i).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("트랜젝션 테스트")
+    public void transactionTest() throws Exception {
+
+        Optional<Customer> preOne = customerRepository.findById(customer.getCustomerId());
+        assertThat(preOne.isPresent()).isTrue();
+
+        Customer newOne = new Customer(UUID.randomUUID(), "a", "aE@naver.com", LocalDateTime.now());
+        Customer insertedNewOne = customerRepository.insert(newOne);
+        Customer customer = customerRepository.findById(insertedNewOne.getCustomerId()).get();
+
+        try {
+            customerRepository.testTransaction(
+                    new Customer(insertedNewOne.getCustomerId(),
+                            "b",
+                            preOne.get().getEmail(),
+                            newOne.getCreatedAt()
+                    ));
+        } catch (DataAccessException e) {
+
+        }
+
+        Optional<Customer> maybeNewOne = customerRepository.findById(insertedNewOne.getCustomerId());
+
+        assertThat(maybeNewOne.isPresent()).isTrue();
+
+        assertThat(maybeNewOne.get().getName()).isEqualTo(newOne.getName());
+        assertThat(maybeNewOne.get().getEmail()).isEqualTo(newOne.getEmail());
+        assertThat(maybeNewOne.get().getCustomerId()).isEqualTo(newOne.getCustomerId());
+
+//        assertThat(maybeNewOne.get()).isSameAs(insertedNewOne);
+        assertThat(maybeNewOne.get(), samePropertyValuesAs(newOne));
+
     }
 }

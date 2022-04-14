@@ -23,8 +23,15 @@ public class LoggingAspect {
     public Object log(ProceedingJoinPoint joinPoint) throws Throwable {
 
         log.info("before method called -> {}", joinPoint.getSignature().toString());
+        long startTime = System.nanoTime();
+        log.info("start time -> {}", startTime);
         Object result = joinPoint.proceed();
+        long endTime = System.nanoTime();
+        log.info("end time -> {}", endTime);
+        log.info("total Time -> {}", endTime - startTime);
+
         log.info("after method called -> {}", joinPoint.getSignature().toString());
+
         return result;
     }
 }

@@ -1,5 +1,7 @@
 package com.kdt.progmrs.kdt.voucher;
 
+import com.kdt.progmrs.kdt.aop.TrackTime;
+import lombok.ToString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -8,6 +10,7 @@ import java.text.MessageFormat;
 import java.util.UUID;
 
 @Service
+@ToString
 public class VoucherService {
 
 //    @Autowired
@@ -29,6 +32,7 @@ public class VoucherService {
                 .orElseThrow(() -> new RuntimeException(MessageFormat.format("Can''t find a voucher for {0}", voucherId)));
     }
 
+    @TrackTime
     public void save(Voucher voucher) {
         voucherRepository.insert(voucher);
     }
