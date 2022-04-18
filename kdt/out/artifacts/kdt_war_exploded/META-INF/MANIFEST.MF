@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Created-By: IntelliJ IDEA
+Built-By: hyunggeunpark
+Build-Jdk: 17.0.1
+Implementation-Title: kdt
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.kdt.progmrs
+Main-Class: ${start-class}
+

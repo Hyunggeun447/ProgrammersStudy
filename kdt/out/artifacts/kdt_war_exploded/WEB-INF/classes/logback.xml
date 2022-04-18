@@ -1,0 +1,48 @@
+<configuration>
+
+    <conversionRule
+            conversionWord="clr"
+            converterClass="org.springframework.boot.logging.logback.ColorConverter" />
+
+    <property name="Log_PATTERN" value="%clr(%d{HH:mm:ss.SSS}){} [%thread] %-5level %logger{36} - %msg%n" />
+    <timestamp key="time" dataPattern="yyyy-MM-dd" />
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>${Log_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>logs/kdt-${time}.log</file>
+        <append>false</append>
+        <encoder>
+            <pattern>${Log_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+<!--        항상 최신파일은 access.log      날짜 지나면 날짜를 변경해줌-->
+        <file>logs/access.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/access-%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>${Log_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+
+
+    <logger name="com.kdt.progmrs.kdt" level="debug">
+        <appender-ref ref="FILE" />
+    </logger>
+
+
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>

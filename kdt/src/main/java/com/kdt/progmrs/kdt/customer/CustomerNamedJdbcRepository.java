@@ -47,12 +47,6 @@ public class CustomerNamedJdbcRepository implements CustomerRepository {
     @Override
     public Customer update(Customer customer) {
 
-        Map<String, Object> paramMap = new HashMap<String, Object>(){{
-            put("customerId", customer.getCustomerId().toString().getBytes());
-            put("name", customer.getName());
-            put("email", customer.getEmail());
-            put("lastLoginAt", customer.getLastLoginAt() != null ? Timestamp.valueOf(customer.getLastLoginAt()) : null);
-        }};
         int update = jdbcTemplate.update("update customers set name = :name, email = :email, last_login_at = :lastLoginAt where customer_id = UUID_TO_BIN(:customerId)",
                 toParamMap(customer));
         if (update != 1) {

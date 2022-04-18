@@ -1,0 +1,33 @@
+{
+  "groups": [
+    {
+      "name": "kdt",
+      "type": "com.kdt.progmrs.kdt.order.OrderProperties",
+      "sourceType": "com.kdt.progmrs.kdt.order.OrderProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "kdt.description",
+      "type": "java.lang.String",
+      "sourceType": "com.kdt.progmrs.kdt.order.OrderProperties"
+    },
+    {
+      "name": "kdt.minimum-order-amount",
+      "type": "java.lang.Integer",
+      "sourceType": "com.kdt.progmrs.kdt.order.OrderProperties"
+    },
+    {
+      "name": "kdt.support-vendors",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.kdt.progmrs.kdt.order.OrderProperties"
+    },
+    {
+      "name": "kdt.version",
+      "type": "java.lang.String",
+      "description": "${}로 property 값을 가져올 수 있다. 만약 값이 없을때 설정도 가능.",
+      "sourceType": "com.kdt.progmrs.kdt.order.OrderProperties"
+    }
+  ],
+  "hints": []
+}
