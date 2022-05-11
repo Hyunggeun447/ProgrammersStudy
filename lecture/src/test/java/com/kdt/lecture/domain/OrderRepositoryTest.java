@@ -1,6 +1,7 @@
 package com.kdt.lecture.domain;
 
 import lombok.extern.slf4j.Slf4j;
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -52,5 +53,40 @@ public class OrderRepositoryTest {
         Member orderMemberEntity = entityManager.find(Member.class, orderEntity.getMemberId());
 
         log.info("nick : {}", orderMemberEntity.getNickName());
+    }
+
+    @Test
+    public void 연관관계_테스트() throws Exception {
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+
+        transaction.begin();
+        Member member = new Member();
+        member.setName("name");
+        member.setNickName("nick");
+        member.setAddress("주소");
+        member.setAge(33);
+
+        em.persist(member);
+
+
+        Order order = new Order();
+        order.setUuid(UUID.randomUUID().toString());
+        order.setOrderStatus(OPENED);
+        order.setOrderDatetime(LocalDateTime.now());
+        order.setMemo("qnwotl");
+        order.setMember(member);
+//        member.setOrders(Lists.newArrayList(order));
+
+        em.persist(order);
+
+        transaction.commit();
+
+        em.clear();
+        Order entity = em.find(Order.class, order.getUuid());
+        log.info("{}", entity.getMember().getNickName());
+        log.info("{}", entity.getMember().getOrders().size());
+        log.info("{}", order.getMember().getOrders().size());
+
     }
 }
