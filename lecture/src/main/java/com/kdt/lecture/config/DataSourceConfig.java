@@ -3,7 +3,6 @@ package com.kdt.lecture.config;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -22,7 +21,7 @@ public class DataSourceConfig {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.h2.Driver");
-        dataSource.setUrl("jdbc:h2:~/test2");
+        dataSource.setUrl("jdbc:h2:~/order");
         dataSource.setUsername("sa");
         dataSource.setPassword("");
 
@@ -44,7 +43,7 @@ public class DataSourceConfig {
         LocalContainerEntityManagerFactoryBean em
                 = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource);
-        em.setPackagesToScan("com.kdt.lecture.domain");
+        em.setPackagesToScan("com.kdt.lecture");
         em.setJpaVendorAdapter(jpaVendorAdapter);
 
         Properties properties = new Properties();

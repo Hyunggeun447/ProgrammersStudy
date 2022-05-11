@@ -2,11 +2,12 @@ package com.kdt.lecture.domain;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.aspectj.weaver.ast.Or;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Id;
+
 
 @Entity
 @Table(name = "member")
@@ -32,7 +33,7 @@ public class Member {
     @Column(name = "description", nullable = true)
     private String description;
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders = new ArrayList<>();
 
     public void addOrder(Order order) {
