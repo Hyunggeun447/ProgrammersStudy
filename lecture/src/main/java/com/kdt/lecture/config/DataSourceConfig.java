@@ -14,14 +14,14 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-@Configuration
+//@Configuration
 public class DataSourceConfig {
 
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.h2.Driver");
-        dataSource.setUrl("jdbc:h2:~/order");
+        dataSource.setUrl("jdbc:h2:tcp://localhost/~/order2");
         dataSource.setUsername("sa");
         dataSource.setPassword("");
 
@@ -43,7 +43,7 @@ public class DataSourceConfig {
         LocalContainerEntityManagerFactoryBean em
                 = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource);
-        em.setPackagesToScan("com.kdt.lecture");
+        em.setPackagesToScan("com.kdt.lecture.domain");
         em.setJpaVendorAdapter(jpaVendorAdapter);
 
         Properties properties = new Properties();

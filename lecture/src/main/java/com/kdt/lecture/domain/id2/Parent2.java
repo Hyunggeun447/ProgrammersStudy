@@ -1,4 +1,4 @@
-package com.kdt.lecture.id2;
+package com.kdt.lecture.domain.id2;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -12,5 +12,5 @@ import javax.persistence.Entity;
 public class Parent2 {
 
     @EmbeddedId
-    private String id1;
+    private ParentId2 id;
 }

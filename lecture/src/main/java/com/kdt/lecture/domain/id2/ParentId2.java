@@ -1,4 +1,4 @@
-package com.kdt.lecture.id2;
+package com.kdt.lecture.domain.id2;
 
 import lombok.*;
 

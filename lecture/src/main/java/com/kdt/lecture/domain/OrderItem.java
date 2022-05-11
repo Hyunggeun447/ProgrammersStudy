@@ -26,7 +26,7 @@ public class OrderItem {
     @JoinColumn(name ="order_id", referencedColumnName = "id")
     private Order order;
 
-    @OneToMany(mappedBy = "orederItem")
+    @OneToMany(mappedBy = "orderItem")
     private List<Item> items;
 
     public void setOrder(Order order) {

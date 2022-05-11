@@ -1,4 +1,4 @@
-package com.kdt.lecture.id;
+package com.kdt.lecture.domain.id;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
