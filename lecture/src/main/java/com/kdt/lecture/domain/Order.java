@@ -1,21 +1,21 @@
 package com.kdt.lecture.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Id;
-
 
 @Entity
 @Table(name = "orders")
 @Getter
 @Setter
-public class Order extends BaseEntity{
-
+public class Order extends BaseEntity {
     @Id
     @Column(name = "id")
     private String uuid;
@@ -29,20 +29,18 @@ public class Order extends BaseEntity{
     @Lob
     private String memo;
 
-    @Column(name = "member_id", insertable = false, updatable = false) // fk
-    private Long memberId;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "member_id", referencedColumnName = "id")
     private Member member;
 
-    @OneToMany(mappedBy = "order")
-    private List<OrderItem> orderItems;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     public void setMember(Member member) {
-        if (Objects.nonNull(this.member)) {
+        if(Objects.nonNull(this.member)) {
             this.member.getOrders().remove(this);
         }
+
         this.member = member;
         member.getOrders().add(this);
     }

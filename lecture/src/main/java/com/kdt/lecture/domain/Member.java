@@ -13,8 +13,7 @@ import javax.persistence.Id;
 @Table(name = "member")
 @Getter
 @Setter
-public class Member {
-
+public class Member extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -33,11 +32,10 @@ public class Member {
     @Column(name = "description", nullable = true)
     private String description;
 
-    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
 
     public void addOrder(Order order) {
         order.setMember(this);
     }
-
 }

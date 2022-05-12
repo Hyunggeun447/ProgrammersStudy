@@ -9,8 +9,8 @@ import javax.persistence.Entity;
 @Getter
 @Setter
 @Entity
-@DiscriminatorValue("CAR")
-public class Car extends Item {
-
-    private int power;
+@DiscriminatorValue("FURNITURE")
+public class Furniture extends Item{
+    private int width;
+    private int height;
 }
