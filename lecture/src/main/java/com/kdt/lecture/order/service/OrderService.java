@@ -51,4 +51,8 @@ public class OrderService {
                 .map(orderConverter::convertOrderDto);
     }
 
+    public void delete(String uuid) {
+        orderRepository.deleteById(uuid);
+    }
+
 }
